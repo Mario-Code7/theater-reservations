@@ -1,22 +1,30 @@
 package com.pluralsight;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 public class TheaterReservations {
-    Scanner scanner = new Scanner(System.in);
-
     public static void main(String[] args) {
-        String name = scanner.nextLine();
-        String date = scanner.nextLine();
-        int ticketAmount = scanner.nextInt();
+        Scanner myScanner = new Scanner(System.in);
 
-        System.out.println("Please enter your name: ");
-        System.out.println("What date will you be coming: (MM/dd/yyyy)");
-        System.out.println("How many tickets would you like: ");
+        System.out.print("Please enter your name: ");
+        String name = myScanner.nextLine();
+        System.out.println();
 
-        System.out.printf("""
-             Name: %s
-             Date: %s
-             Number of tickets: %d""", name, date, ticketAmount);
+        System.out.print("What date will you be coming today(MM/dd/yyyy): ");
+        String date = myScanner.nextLine();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("M/dd/yyyy");
+        LocalDate dateComing = LocalDate.parse(date, formatter);
+        System.out.println();
+
+        System.out.print("How many tickets would you like: ");
+        int ticketAmount = myScanner.nextInt();
+        System.out.println();
+
+
+        //change date to dateComing to display 2020-07-9
+        String result = ticketAmount + " " + "reserved for " + date + " under " + name;
+        System.out.println(result);
     }
 }
